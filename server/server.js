@@ -22,10 +22,12 @@ app.get("/", (req, res) => {
 });
 
 app.post("/message", (req, res) => {
-  const { message } = req.body;
+  const { message, username, time } = req.body;
 
   pusher.trigger("chat", "message", {
     message: message,
+    username: username,
+    time: time,
   });
 
   res.status(200).send("Nachricht gesendet");

@@ -47,30 +47,36 @@ const Chat = () => {
 
   if (!inChatroom) {
     return (
-      <div>
-        <h2>Willkommen zur Chatbox</h2>
+      <div className="flex flex-col items-center p-8 bg-blue-100 min-h-screen">
+        <h2 className="text-2xl font-semibold mb-4">Welcome to Chatbox</h2>
         <input
           type="text"
-          placeholder="Wähle einen Benutzernamen"
+          placeholder="Choose a Username"
           value={username}
           onChange={(e) => setUsername(e.target.value)}
+          className="p-2 border-2 border-gray-300 rounded-md mb-4"
         />
-        <button onClick={() => setInChatroom(true)} disabled={!username.trim()}>
-          Chat betreten
+        <button
+          onClick={() => setInChatroom(true)}
+          disabled={!username.trim()}
+          className="bg-blue-500 text-white py-2 px-4 rounded-md disabled:bg-gray-300"
+        >
+          Enter Chat
         </button>
       </div>
     );
   }
 
   return (
-    <div>
-      <h2>Chat</h2>
-      <div>
+    <div className="flex flex-col items-center p-8 bg-blue-100 min-h-screen">
+      <h2 className="text-2xl font-semibold mb-4">Chat</h2>
+      <div className="w-full max-w-xl bg-white shadow-lg rounded-lg p-4 mb-4">
         {messages.map((msg, index) => (
-          <div key={index}>
+          <div key={index} className="border-b py-2">
             {" "}
-            <strong>{msg.username}</strong>: {msg.message}{" "}
-            <span>({msg.time})</span>
+            <strong className="text-blue-600">{msg.username}</strong>:{" "}
+            {msg.message}{" "}
+            <span className="text-sm text-gray-500">({msg.time})</span>
           </div>
         ))}
       </div>
@@ -79,8 +85,14 @@ const Chat = () => {
         value={newMessage}
         onChange={(e) => setNewMessage(e.target.value)}
         placeholder="New Message..."
+        className="p-2 w-full max-w-xl border-2 border-gray-300 rounded-md mb-4"
       />
-      <button onClick={handleMessageSend}>Senden</button>
+      <button
+        onClick={handleMessageSend}
+        className="bg-blue-500 text-white py-2 px-4 rounded-md disabled:bg-gray-300"
+      >
+        Senden
+      </button>
     </div>
   );
 };
